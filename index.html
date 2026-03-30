@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Charitable Gifting Fund — Independent 501(c)(3) Philanthropic Infrastructure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sky:        #e8f4fb;        /* page background */
+      --sky-mid:    #d4eaf6;        /* panel hover bg */
+      --sky-deep:   #1a6fa8;        /* primary blue accent */
+      --sky-bright: #2e90d0;        /* hover state */
+      --sky-pale:   #f4f9fd;        /* panel base */
+      --gold:       #b07d2e;        /* warm accent */
+      --gold-hi:    #c99a4a;
+      --sage:       #2d6645;        /* green accent */
+      --sage-hi:    #4a8a62;
+      --ink:        #162535;        /* text */
+      --ink-mid:    #2c4155;
+      --fog:        #6a8499;
+      --stone:      #c8dae8;
+      --white:      #ffffff;
+      --rule:       rgba(26,111,168,.12);
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'DM Sans',sans-serif; background:var(--sky); color:var(--ink); min-height:100vh; }
+
+    /* TOPBAR */
+    .topbar {
+      position:fixed; top:0; left:0; right:0; z-index:50; height:58px;
+      display:flex; align-items:center; justify-content:space-between; padding:0 3rem;
+      background:rgba(255,255,255,.92); backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--rule);
+    }
+    .tb-brand { display:flex; flex-direction:column; gap:2px; }
+    .tb-name {
+      font-family:'Cormorant Garamond',serif; font-size:2.1rem; font-style:italic;
+      color:var(--sky-deep); line-height:1;
+    }
+    .tb-sub {
+      font-size:.87rem; font-weight:200; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--fog);
+    }
+    .tb-right { display:flex; gap:1.75rem; }
+    .tb-right a {
+      font-size:.97rem; font-weight:300; letter-spacing:.1em;
+      color:var(--fog); text-decoration:none; transition:color .2s;
+    }
+    .tb-right a:hover { color:var(--sky-deep); }
+
+    /* SPLIT */
+    .split { display:flex; min-height:calc(100vh - 58px); margin-top:58px; }
+
+    /* PANEL — top-aligned */
+    .panel {
+      flex:1; position:relative; overflow:hidden;
+      display:flex; flex-direction:column; align-items:flex-start;
+      padding:3.25rem 2.75rem 3rem;
+      background:var(--sky-pale);
+      transition:flex .45s cubic-bezier(.22,1,.36,1), background .3s;
+    }
+    .panel:hover { flex:1.07; background:var(--white); }
+    .panel-wm  { border-right:1px solid var(--rule); }
+    .panel-crt { border-right:1px solid var(--rule); }
+
+    /* Top accent bar per panel */
+    .panel::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      transform:scaleX(0); transform-origin:left; transition:transform .35s;
+    }
+    .panel:hover::before { transform:scaleX(1); }
+    .panel-wm  ::before { background:var(--gold); }
+    .panel-crt ::before { background:var(--sky-deep); }
+    .panel-inst::before { background:var(--sage); }
+
+    /* Subtle watermark number */
+    .panel::after {
+      content:attr(data-num);
+      position:absolute; bottom:-1rem; right:1.5rem;
+      font-family:'Cormorant Garamond',serif;
+      font-size:10rem; font-style:italic; font-weight:700;
+      line-height:1; pointer-events:none; user-select:none;
+      color:transparent;
+    }
+    .panel-wm ::after  { -webkit-text-stroke:1px rgba(176,125,46,.07); }
+    .panel-crt::after  { -webkit-text-stroke:1px rgba(26,111,168,.07); }
+    .panel-inst::after { -webkit-text-stroke:1px rgba(45,102,69,.07); }
+
+    /* Subtle dot grid */
+    .dots { position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .4s; }
+    .panel:hover .dots { opacity:1; }
+    .panel-wm  .dots { background:radial-gradient(rgba(176,125,46,.07) 1px, transparent 1px) 0 0 / 36px 36px; }
+    .panel-crt .dots { background:radial-gradient(rgba(26,111,168,.07) 1px, transparent 1px) 0 0 / 36px 36px; }
+    .panel-inst .dots { background:radial-gradient(rgba(45,102,69,.07) 1px, transparent 1px) 0 0 / 36px 36px; }
+
+    /* TOP ROW */
+    .p-top {
+      position:relative; z-index:2; width:100%;
+      display:flex; justify-content:space-between; align-items:flex-start;
+      min-height:52px; margin-bottom:2.5rem;
+    }
+    .p-audience {
+      font-size:.90rem; font-weight:400; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--fog); line-height:1.75;
+    }
+    .p-num {
+      font-family:'Cormorant Garamond',serif; font-size:1rem;
+      font-style:italic; color:var(--stone);
+    }
+
+    /* ICON */
+    .p-icon {
+      position:relative; z-index:2; width:40px; height:40px; margin-bottom:1.75rem; flex-shrink:0;
+      opacity:.45; transition:opacity .3s, transform .4s cubic-bezier(.22,1,.36,1);
+    }
+    .panel:hover .p-icon { opacity:1; transform:translateY(-3px); }
+    .panel-wm  .p-icon { color:var(--gold); }
+    .panel-crt .p-icon { color:var(--sky-deep); }
+    .panel-inst .p-icon { color:var(--sage); }
+
+    /* HEADING */
+    .p-heading {
+      position:relative; z-index:2;
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.8rem,3.8vw,4.5rem); font-weight:300; line-height:1.1;
+      color:var(--ink); margin-bottom:1.1rem;
+      min-height:3.6em;
+    }
+    .p-heading em { font-style:italic; }
+    .panel-wm  .p-heading em { color:var(--gold); }
+    .panel-crt .p-heading em { color:var(--sky-deep); }
+    .panel-inst .p-heading em { color:var(--sage); }
+
+    /* DESC */
+    .p-desc {
+      position:relative; z-index:2;
+      font-size:1.15rem; font-weight:300; color:var(--fog);
+      line-height:1.82; max-width:340px; margin-bottom:1.85rem;
+      min-height:5em;
+    }
+
+    /* BUTTON */
+    .p-btn {
+      position:relative; z-index:2;
+      display:inline-flex; align-items:center; gap:.6rem;
+      font-size:.94rem; font-weight:400; letter-spacing:.16em; text-transform:uppercase;
+      text-decoration:none; padding:.82rem 1.65rem; border-radius:2px;
+      transition:background .2s, transform .2s, gap .2s;
+    }
+    .p-btn .arr { transition:transform .25s; }
+    .p-btn:hover .arr { transform:translateX(4px); }
+    .p-btn:hover { transform:translateY(-2px); }
+    .panel-wm  .p-btn { background:var(--gold);     color:var(--white); }
+    .panel-wm  .p-btn:hover { background:var(--gold-hi); }
+    .panel-crt .p-btn { background:var(--sky-deep); color:var(--white); }
+    .panel-crt .p-btn:hover { background:var(--sky-bright); }
+    .panel-inst .p-btn { background:var(--sage);    color:var(--white); }
+    .panel-inst .p-btn:hover { background:var(--sage-hi); }
+
+    /* FEATURE LIST */
+    .p-list {
+      position:relative; z-index:2;
+      list-style:none; display:flex; flex-direction:column; gap:.5rem;
+      margin-top:1.75rem;
+    }
+    .p-list li {
+      font-size:1.04rem; font-weight:300; color:var(--fog);
+      display:flex; align-items:baseline; gap:.55rem; line-height:1.45;
+    }
+    .panel-wm  .p-list li::before { content:'–'; color:var(--gold);     font-size:.92rem; flex-shrink:0; }
+    .panel-crt .p-list li::before { content:'–'; color:var(--sky-deep); font-size:.92rem; flex-shrink:0; }
+    .panel-inst .p-list li::before { content:'–'; color:var(--sage);    font-size:.92rem; flex-shrink:0; }
+
+    /* VEHICLE LABEL — pinned to bottom */
+    .p-bot { position:relative; z-index:2; margin-top:auto; padding-top:2rem; width:100%; }
+    .p-vehicle {
+      display:block; font-size:.67rem; font-weight:300; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--stone);
+      border-top:1px solid var(--rule); padding-top:.85rem;
+    }
+
+    /* FADE IN */
+    @keyframes up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+    .p-top     { animation:up .7s .05s both; }
+    .p-icon    { animation:up .7s .12s both; }
+    .p-heading { animation:up .7s .18s both; }
+    .p-desc    { animation:up .7s .24s both; }
+    .p-btn     { animation:up .7s .30s both; }
+    .p-list    { animation:up .7s .36s both; }
+    .p-bot     { animation:up .7s .42s both; }
+
+    /* MOBILE */
+    @media (max-width:780px) {
+      .split { flex-direction:column; }
+      .panel { min-height:80vh; border-right:none; border-bottom:1px solid var(--rule); }
+      .panel:hover { flex:1; }
+      .topbar { padding:0 1.5rem; }
+      .p-heading { min-height:unset; }
+      .p-desc    { min-height:unset; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tb-brand">
+    <div class="tb-name">Charitable Gifting Fund</div>
+    <div class="tb-sub">Independent 501(c)(3) &middot; Delaware</div>
+  </div>
+  <div class="tb-right">
+    <a href="mailto:ops@charitablegiftingfund.org">ops@charitablegiftingfund.org</a>
+    <a href="tel:+19739848200">973-984-8200</a>
+  </div>
+</header>
+
+<div class="split">
+
+  <!-- 01 WEALTH MANAGEMENT -->
+  <div class="panel panel-wm" data-num="I">
+    <div class="dots"></div>
+    <div class="p-top">
+      <span class="p-audience">Wealth Management<br/>RIAs &middot; Broker-Dealers</span>
+      <span class="p-num">01</span>
+    </div>
+    <svg class="p-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1">
+      <rect x="5" y="19" width="38" height="24" rx="2"/>
+      <path d="M16 19V15a8 8 0 0116 0v4"/>
+      <circle cx="24" cy="32" r="4"/>
+    </svg>
+    <h2 class="p-heading">Offer your clients<br/>a philanthropic<br/><em>home.</em></h2>
+    <p class="p-desc">CGF provides the 501(c)(3) sponsorship, compliance, and back-office for white-label donor-advised funds, YoungPIF&trade; pooled income funds, and CRT trustee services &mdash; under your brand, without the overhead.</p>
+    <a href="wealth-management.html" class="p-btn">For Wealth Management <span class="arr">&rarr;</span></a>
+    <ul class="p-list">
+      <li>White-label DAF program under your firm&rsquo;s brand</li>
+      <li>YoungPIF&trade; &mdash; pooled income fund &middot; IRC &sect;642(c)(5)</li>
+      <li>CRT trustee &mdash; CRAT &amp; CRUT &middot; IRC &sect;664</li>
+      <li>~200K advisors via Orion &amp; Envestnet</li>
+    </ul>
+    <div class="p-bot"><span class="p-vehicle">Donor-Advised Funds &middot; Pooled Income Funds &middot; CRT Trustee</span></div>
+  </div>
+
+  <!-- 02 CRT TRUSTEE -->
+  <div class="panel panel-crt" data-num="II">
+    <div class="dots"></div>
+    <div class="p-top">
+      <span class="p-audience">Estate Planning &middot; Advisors<br/>Wealth Management &middot; Institutions</span>
+      <span class="p-num">02</span>
+    </div>
+    <svg class="p-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1">
+      <circle cx="24" cy="24" r="17"/>
+      <path d="M24 14v10l6 4"/>
+      <path d="M14 38l-4 4M34 38l4 4"/>
+    </svg>
+    <h2 class="p-heading">Independent trustee<br/>for charitable<br/><em>remainder trusts.</em></h2>
+    <p class="p-desc">CGF serves as independent, institutional trustee for CRATs and CRUTs under IRC &sect;664 &mdash; removing advisor conflicts, satisfying compliance requirements, and administering the trust for its full duration.</p>
+    <a href="wealth-management.html#crt" class="p-btn">CRT Trustee Services <span class="arr">&rarr;</span></a>
+    <ul class="p-list">
+      <li>Independent trustee &mdash; no advisor conflict of interest</li>
+      <li>CRAT &amp; CRUT structures &middot; fixed or variable income</li>
+      <li>No capital gains at contribution of appreciated assets</li>
+      <li>Form 5227, Schedule K-1, and all IRS filings by CGF</li>
+    </ul>
+    <div class="p-bot"><span class="p-vehicle">Charitable Remainder Annuity Trusts &middot; Unitrusts</span></div>
+  </div>
+
+  <!-- 03 INSTITUTIONS -->
+  <div class="panel panel-inst" data-num="III">
+    <div class="dots"></div>
+    <div class="p-top">
+      <span class="p-audience">Universities &middot; Hospitals<br/>Arts &middot; Conservation &middot; Faith</span>
+      <span class="p-num">03</span>
+    </div>
+    <svg class="p-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M24 5l19 9.5v5H5v-5L24 5z"/>
+      <rect x="9"    y="19.5" width="4.5" height="18"/>
+      <rect x="21.75" y="19.5" width="4.5" height="18"/>
+      <rect x="34.5"  y="19.5" width="4.5" height="18"/>
+      <path d="M5 37.5h38"/>
+    </svg>
+    <h2 class="p-heading">Receive planned gifts<br/>without running<br/><em>the program.</em></h2>
+    <p class="p-desc">CGF administers DAFs, pooled income funds, and CRTs on your behalf &mdash; your donors give through a sophisticated charitable program, and assets flow to your institution when accounts close.</p>
+    <a href="institutions.html" class="p-btn">For Institutions <span class="arr">&rarr;</span></a>
+    <ul class="p-list">
+      <li>Your institution named as remainder beneficiary</li>
+      <li>No 501(c)(3) formation or DAF administration burden</li>
+      <li>CGF as CRT trustee &mdash; institution as charitable remainder</li>
+      <li>Co-branded donor experience under your institution&rsquo;s name</li>
+    </ul>
+    <div class="p-bot"><span class="p-vehicle">Institutional Gifting Program &middot; DAF &middot; PIF &middot; CRT</span></div>
+  </div>
+
+</div>
+</body>
+</html>

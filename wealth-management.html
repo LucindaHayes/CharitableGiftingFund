@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Charitable Gifting Fund — Philanthropic Infrastructure for Wealth Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Neue+Haas+Grotesk+Display+Pro:wght@400;500&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink:       #0c1c2a;
+      --ink-mid:   #152536;
+      --ink-lift:  #1d3248;
+      --gold:      #b8954e;
+      --gold-hi:   #d4b272;
+      --gold-pale: #f2e8d6;
+      --cream:     #f8f4ee;
+      --white:     #ffffff;
+      --fog:       #8899ab;
+      --stone:     #e4ddd3;
+      --rule:      rgba(184,149,78,.2);
+      --rule-dark: rgba(184,149,78,.1);
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans', sans-serif;
+      background:var(--cream);
+      color:var(--ink);
+      overflow-x:hidden;
+      line-height:1.6;
+    }
+    /* grain */
+    body::after {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    }
+    /* reveal — pure CSS, no JS dependency */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+    .rv  { animation: fadeUp .7s cubic-bezier(.22,1,.36,1) both; }
+    .rv.d1 { animation-delay:.08s; }
+    .rv.d2 { animation-delay:.16s; }
+    .rv.d3 { animation-delay:.24s; }
+    .rv.d4 { animation-delay:.32s; }
+    .rv.d5 { animation-delay:.40s; }
+
+
+    /* back link */
+    .nav-back {
+      display:inline-flex; align-items:center; gap:.45rem;
+      font-size:1rem; font-weight:300; letter-spacing:.16em; text-transform:uppercase;
+      color:rgba(255,255,255,.35); text-decoration:none;
+      border-right:1px solid rgba(255,255,255,.08); padding-right:1.5rem; margin-right:.5rem;
+      transition:color .2s;
+    }
+    .nav-back:hover { color:var(--gold); }
+    .nav-back svg { width:12px; height:12px; flex-shrink:0; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      height:68px; display:flex; align-items:center; justify-content:space-between;
+      padding:0 4rem;
+      background:rgba(12,28,42,.97);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--rule-dark);
+      transition:box-shadow .3s;
+    }
+    nav.scrolled { box-shadow:0 4px 40px rgba(0,0,0,.4); }
+
+    .logo { display:flex; flex-direction:column; gap:2px; text-decoration:none; }
+    .logo-mark {
+      font-family:'Libre Baskerville', serif;
+      font-size:1.25rem; font-style:italic; color:var(--gold);
+      letter-spacing:.02em; line-height:1;
+    }
+    .logo-sub {
+      font-size:.97rem; font-weight:300; letter-spacing:.24em; text-transform:uppercase;
+      color:var(--fog);
+    }
+
+    .nav-links { display:flex; align-items:center; gap:2.5rem; list-style:none; }
+    .nav-links a {
+      font-size:.87rem; font-weight:300; letter-spacing:.18em; text-transform:uppercase;
+      color:rgba(255,255,255,.48); text-decoration:none; transition:color .2s;
+    }
+    .nav-links a:hover { color:rgba(255,255,255,.85); }
+
+    .nav-cta {
+      font-size:1.07rem; font-weight:400; letter-spacing:.15em; text-transform:uppercase;
+      text-decoration:none; color:var(--gold);
+      border:1px solid rgba(184,149,78,.45); padding:.42rem 1.1rem; border-radius:2px;
+      transition:background .2s, color .2s;
+    }
+    .nav-cta:hover { background:var(--gold); color:var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height:100vh; background:var(--ink);
+      display:grid; grid-template-columns:55% 45%;
+      padding-top:68px; overflow:hidden; position:relative;
+    }
+    /* subtle dot-grid */
+    .hero::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:radial-gradient(rgba(184,149,78,.08) 1px, transparent 1px);
+      background-size:44px 44px;
+    }
+    /* diagonal slice */
+    .hero::after {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:linear-gradient(108deg, transparent 52%, rgba(184,149,78,.035) 52%);
+    }
+
+    .hero-left {
+      padding:5.5rem 3.5rem 5.5rem 4.5rem;
+      display:flex; flex-direction:column; justify-content:center;
+      position:relative; z-index:2;
+    }
+    .hero-kicker {
+      display:inline-flex; align-items:center; gap:.7rem;
+      font-size:1rem; font-weight:300; letter-spacing:.3em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:2.25rem;
+    }
+    .hero-kicker::before { content:''; width:2rem; height:1px; background:var(--gold); }
+
+    h1 {
+      font-family:'Libre Baskerville', serif;
+      font-size:clamp(2.8rem,4.5vw,4.8rem); font-weight:400; line-height:1.08;
+      color:var(--white); margin-bottom:2rem;
+    }
+    h1 em { font-style:italic; color:var(--gold-hi); }
+
+    .hero-p {
+      font-size:1.13rem; font-weight:300; color:var(--fog);
+      line-height:1.85; max-width:460px; margin-bottom:2.75rem;
+    }
+    .hero-btns { display:flex; align-items:center; gap:1.75rem; }
+
+    .btn-primary {
+      display:inline-block; background:var(--gold); color:var(--ink);
+      font-size:1.07rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+      text-decoration:none; padding:.88rem 1.9rem; border-radius:2px;
+      transition:background .2s, transform .2s;
+    }
+    .btn-primary:hover { background:var(--gold-hi); transform:translateY(-2px); }
+
+    .btn-ghost-link {
+      font-size:1.07rem; font-weight:300; letter-spacing:.18em; text-transform:uppercase;
+      color:rgba(255,255,255,.35); text-decoration:none;
+      display:inline-flex; align-items:center; gap:.45rem;
+      transition:color .2s;
+    }
+    .btn-ghost-link .arr { transition:transform .2s; }
+    .btn-ghost-link:hover { color:rgba(255,255,255,.7); }
+    .btn-ghost-link:hover .arr { transform:translateX(4px); }
+
+    /* Hero right panel — split cards */
+    .hero-right {
+      display:flex; flex-direction:column;
+      border-left:1px solid var(--rule-dark);
+      position:relative; z-index:2;
+    }
+    .hero-card {
+      flex:1; padding:3rem 2.75rem;
+      border-bottom:1px solid var(--rule-dark);
+      display:flex; flex-direction:column; justify-content:space-between;
+      transition:background .3s;
+      cursor:default;
+    }
+    .hero-card:last-child { border-bottom:none; }
+    .hero-card:hover { background:rgba(184,149,78,.04); }
+
+    .hc-tag {
+      font-size:.96rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:1.25rem;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .hc-tag::before { content:''; width:1.2rem; height:1px; background:var(--gold); }
+
+    .hc-title {
+      font-family:'Libre Baskerville', serif;
+      font-size:1.65rem; font-weight:400; color:var(--white); line-height:1.2;
+      margin-bottom:.75rem;
+    }
+    .hc-title em { font-style:italic; }
+
+    .hc-body {
+      font-size:1rem; font-weight:300; color:var(--fog); line-height:1.7;
+      margin-bottom:1.5rem;
+    }
+    .hc-features { list-style:none; display:flex; flex-direction:column; gap:.45rem; }
+    .hc-features li {
+      font-size:.92rem; font-weight:300; color:rgba(255,255,255,.38);
+      display:flex; align-items:baseline; gap:.5rem;
+    }
+    .hc-features li::before { content:'–'; color:var(--gold); font-size:.82rem; flex-shrink:0; }
+
+    /* ── TRUST STRIP ── */
+    .trust {
+      background:var(--ink-mid);
+      border-bottom:1px solid var(--rule-dark);
+    }
+    .trust-inner {
+      max-width:1200px; margin:0 auto; padding:1.3rem 4rem;
+      display:flex; align-items:center; gap:3rem; flex-wrap:wrap;
+    }
+    .trust-item {
+      display:flex; align-items:center; gap:.6rem;
+      font-size:.82rem; font-weight:300; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--fog);
+    }
+    .trust-pip { width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+    .trust-sep { width:1px; height:16px; background:var(--rule-dark); }
+
+    /* ── SHARED ── */
+    .section-pad { padding:6rem 0; }
+    .inner { max-width:1200px; margin:0 auto; padding:0 4rem; }
+
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:.65rem;
+      font-size:.99rem; font-weight:300; letter-spacing:.3em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:1.5rem;
+    }
+    .eyebrow::before { content:''; width:1.5rem; height:1px; background:var(--gold); }
+
+    h2 {
+      font-family:'Libre Baskerville', serif;
+      font-size:clamp(2.4rem,3.5vw,3.6rem); font-weight:400; line-height:1.15;
+      color:var(--ink); margin-bottom:1.25rem;
+    }
+    h2 em { font-style:italic; color:var(--gold); }
+    h2.on-dark { color:var(--white); }
+    h2.on-dark em { color:var(--gold-hi); }
+
+    .body { font-size:1.3rem; font-weight:300; color:#5d7080; line-height:1.85; }
+
+    /* ── ABOUT ── */
+    .about { background:var(--cream); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:7rem; align-items:center; }
+
+    .about-panel {
+      display:grid; grid-template-columns:1fr 1fr; gap:1px;
+      background:var(--stone); border:1px solid var(--stone);
+    }
+    .stat {
+      background:var(--white); padding:2rem 1.75rem;
+    }
+    .stat-n {
+      font-family:'Libre Baskerville', serif;
+      font-size:2.75rem; font-weight:400; color:var(--ink); line-height:1;
+      margin-bottom:.3rem;
+    }
+    .stat-n sup { font-size:1rem; color:var(--gold); }
+    .stat-l { font-size:1.06rem; font-weight:300; letter-spacing:.08em; color:var(--fog); }
+
+    .independence-bar {
+      margin-top:1.75rem; padding:1rem 1.5rem;
+      background:var(--ink); border-left:2px solid var(--gold);
+      font-size:.94rem; font-weight:300; color:rgba(255,255,255,.55); line-height:1.65;
+    }
+    .independence-bar strong { color:var(--gold-hi); font-weight:400; }
+
+    /* ── SOLUTIONS ── */
+    .solutions { background:var(--ink); }
+
+    .solutions-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(184,149,78,.12); }
+
+    .sol-card {
+      background:var(--ink-mid); padding:3.5rem 3rem;
+      position:relative; overflow:hidden;
+      display:flex; flex-direction:column;
+      transition:background .3s;
+    }
+    .sol-card:hover { background:var(--ink-lift); }
+    .sol-card::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:var(--gold); transform:scaleX(0); transform-origin:left;
+      transition:transform .35s;
+    }
+    .sol-card:hover::after { transform:scaleX(1); }
+
+    .sol-num {
+      font-family:'Libre Baskerville', serif;
+      position:absolute; bottom:-1.5rem; right:1rem;
+      font-size:10rem; font-style:italic; font-weight:700;
+      color:transparent; -webkit-text-stroke:1px rgba(184,149,78,.06);
+      line-height:1; pointer-events:none; user-select:none;
+    }
+
+    .sol-tag {
+      display:inline-block; border:1px solid rgba(184,149,78,.3);
+      color:var(--gold); font-size:.96rem; font-weight:300; letter-spacing:.2em; text-transform:uppercase;
+      padding:.28rem .75rem; border-radius:20px; margin-bottom:2rem; width:fit-content;
+    }
+    .sol-title {
+      font-family:'Libre Baskerville', serif;
+      font-size:2rem; font-weight:400; color:var(--white); line-height:1.18;
+      margin-bottom:.6rem;
+    }
+    .sol-sub {
+      font-size:.97rem; font-weight:300; font-style:italic; color:var(--gold-hi);
+      margin-bottom:1.5rem; line-height:1.5;
+    }
+    .sol-body {
+      font-size:.8rem; font-weight:300; color:var(--fog);
+      line-height:1.8; margin-bottom:1.75rem; flex:1;
+    }
+    .sol-list { list-style:none; display:flex; flex-direction:column; gap:.5rem; margin-bottom:2rem; }
+    .sol-list li {
+      font-size:.96rem; font-weight:300; color:rgba(255,255,255,.4);
+      display:flex; align-items:baseline; gap:.55rem;
+    }
+    .sol-list li::before { content:'—'; color:var(--gold); font-size:.82rem; flex-shrink:0; }
+    .sol-link {
+      font-size:.82rem; font-weight:300; letter-spacing:.18em; text-transform:uppercase;
+      text-decoration:none; color:var(--gold);
+      border-bottom:1px solid rgba(184,149,78,.3); padding-bottom:.1rem;
+      display:inline-flex; align-items:center; gap:.5rem; margin-top:auto;
+      transition:border-color .2s, gap .2s;
+    }
+    .sol-link:hover { border-color:var(--gold); gap:.85rem; }
+
+    /* ── YOUNGPIF DEEP ── */
+    .pif { background:var(--white); }
+    .pif-grid { display:grid; grid-template-columns:420px 1fr; gap:7rem; align-items:start; }
+
+    .pif-sticky { position:sticky; top:88px; }
+
+    .pif-badge {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(184,149,78,.07); border:1px solid rgba(184,149,78,.2);
+      color:var(--gold-hi); font-size:.99rem; letter-spacing:.2em; text-transform:uppercase;
+      padding:.35rem .85rem; border-radius:20px; margin-bottom:1.5rem;
+    }
+
+    .pif-mechanics { display:flex; flex-direction:column; gap:0; margin-top:1.75rem; }
+    .pif-mech {
+      display:grid; grid-template-columns:140px 1fr; gap:1rem;
+      padding:.85rem 0; border-bottom:1px solid var(--stone);
+      align-items:baseline;
+    }
+    .pif-mech:last-child { border-bottom:none; }
+    .mech-label { font-size:.82rem; font-weight:400; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); }
+    .mech-val { font-size:1rem; font-weight:300; color:#5d7080; line-height:1.55; }
+
+    .pif-cards { display:flex; flex-direction:column; gap:1px; }
+    .pif-card {
+      border:1px solid var(--stone); padding:1.6rem 1.75rem;
+      display:grid; grid-template-columns:42px 1fr; gap:1rem; align-items:start;
+      transition:border-color .25s;
+      background:var(--white);
+    }
+    .pif-card:hover { border-color:rgba(184,149,78,.35); }
+    .pif-sym {
+      width:38px; height:38px; border-radius:50%;
+      background:rgba(184,149,78,.07); display:flex; align-items:center; justify-content:center;
+      font-family:'Libre Baskerville', serif;
+      font-size:1rem; color:var(--gold); flex-shrink:0;
+    }
+    .pif-card-title {
+      font-family:'Libre Baskerville', serif;
+      font-size:1.15rem; font-weight:400; color:var(--ink); margin-bottom:.3rem;
+    }
+    .pif-card-body { font-size:.97rem; font-weight:300; color:#6b7e90; line-height:1.65; }
+    .pif-disc {
+      margin-top:1.25rem; font-size:.82rem; font-weight:300;
+      color:rgba(93,112,128,.55); line-height:1.6;
+      padding-top:1rem; border-top:1px solid var(--stone);
+    }
+
+    /* ── HOW ── */
+    .how { background:var(--cream); }
+    .how-grid { display:grid; grid-template-columns:340px 1fr; gap:7rem; align-items:start; }
+    .how-sticky { position:sticky; top:88px; }
+
+    .steps { display:flex; flex-direction:column; }
+    .step {
+      display:grid; grid-template-columns:60px 1fr;
+      padding:2.25rem 0; border-bottom:1px solid var(--stone);
+    }
+    .step:first-child { padding-top:0; }
+    .step:last-child { border-bottom:none; }
+    .step-n {
+      font-family:'Libre Baskerville', serif;
+      font-style:italic; font-size:.90rem; color:var(--gold); padding-top:.1rem;
+    }
+    .step-title {
+      font-family:'Libre Baskerville', serif;
+      font-size:1.25rem; font-weight:400; color:var(--ink); margin-bottom:.4rem;
+    }
+    .step-body { font-size:1rem; font-weight:300; color:#6b7e90; line-height:1.8; }
+
+    /* ── ADVISORS ── */
+    .advisors { background:var(--ink); }
+    .adv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(184,149,78,.1); }
+    .adv-card {
+      background:var(--ink-mid); padding:2.5rem 2.25rem;
+      transition:background .25s;
+    }
+    .adv-card:hover { background:var(--ink-lift); }
+    .adv-icon { width:36px; height:36px; color:var(--gold); margin-bottom:1.35rem; }
+    .adv-title {
+      font-family:'Libre Baskerville', serif;
+      font-size:1.25rem; font-weight:400; color:var(--white); margin-bottom:.55rem;
+    }
+    .adv-body { font-size:.98rem; font-weight:300; color:var(--fog); line-height:1.7; }
+
+    /* ── INDEPENDENCE ── */
+    .independence { background:var(--cream); border-top:1px solid var(--stone); }
+    .ind-inner { max-width:740px; margin:0 auto; padding:5.5rem 4rem; text-align:center; }
+    .ind-pull {
+      font-family:'Libre Baskerville', serif;
+      font-size:clamp(1.5rem,2.3vw,2.2rem); font-weight:400; font-style:italic;
+      color:var(--ink); line-height:1.3; margin-bottom:1.75rem;
+    }
+    .ind-rule { width:3rem; height:1px; background:var(--gold); margin:0 auto 1.75rem; }
+    .ind-body { font-size:1.07rem; font-weight:300; color:#5d7080; line-height:1.9; margin-bottom:2.25rem; }
+    .ind-badges { display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-bottom:2.75rem; }
+    .ibadge {
+      display:inline-flex; align-items:center; gap:.45rem;
+      border:1px solid var(--stone); color:#6b7e90;
+      font-size:1rem; font-weight:300; letter-spacing:.15em; text-transform:uppercase;
+      padding:.4rem .9rem; border-radius:20px;
+    }
+    .ibadge-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); }
+
+    /* ── CTA ── */
+    .cta { background:var(--gold-pale); border-top:1px solid rgba(184,149,78,.2); }
+    .cta-inner {
+      max-width:1200px; margin:0 auto; padding:4.5rem 4rem;
+      display:grid; grid-template-columns:1fr auto; gap:4rem; align-items:center;
+    }
+    .cta-title {
+      font-family:'Libre Baskerville', serif;
+      font-size:clamp(2rem,2.8vw,2.9rem); font-weight:400; color:var(--ink);
+      line-height:1.2; margin-bottom:.65rem;
+    }
+    .cta-sub { font-size:1.07rem; font-weight:300; color:#5d7080; }
+    .cta-actions { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; }
+    .btn-dark {
+      display:inline-block; background:var(--ink); color:var(--white);
+      font-size:1.07rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase;
+      text-decoration:none; padding:.88rem 1.85rem; border-radius:2px; white-space:nowrap;
+      transition:background .2s;
+    }
+    .btn-dark:hover { background:var(--ink-lift); }
+    .cta-phone { font-size:.92rem; font-weight:300; color:#6b7e90; }
+    .cta-phone a { color:var(--ink); text-decoration:none; border-bottom:1px solid rgba(12,28,42,.18); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--ink); border-top:1px solid var(--rule-dark); }
+    .foot-main {
+      max-width:1200px; margin:0 auto; padding:3.5rem 4rem 2.5rem;
+      display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:3.5rem;
+    }
+    .foot-name {
+      font-family:'Libre Baskerville', serif;
+      font-size:1.3rem; font-style:italic; color:var(--gold); margin-bottom:.25rem;
+    }
+    .foot-tag { font-size:.97rem; font-weight:300; letter-spacing:.2em; text-transform:uppercase; color:var(--fog); margin-bottom:1.1rem; }
+    .foot-copy { font-size:.90rem; font-weight:300; color:rgba(136,153,171,.45); line-height:1.7; }
+
+    .foot-col h6 { font-size:.96rem; font-weight:300; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin-bottom:1.1rem; }
+    .foot-col ul { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
+    .foot-col a { font-size:1.15rem; font-weight:300; color:rgba(255,255,255,.32); text-decoration:none; transition:color .2s; }
+    .foot-col a:hover { color:var(--gold-hi); }
+    .foot-contact p { font-size:1.15rem; font-weight:300; color:rgba(255,255,255,.32); line-height:1.85; }
+    .foot-contact a { color:rgba(255,255,255,.32); text-decoration:none; transition:color .2s; }
+    .foot-contact a:hover { color:var(--gold-hi); }
+
+    .foot-bottom {
+      max-width:1200px; margin:0 auto; padding:1.1rem 4rem;
+      border-top:1px solid rgba(184,149,78,.07);
+      display:flex; justify-content:space-between; align-items:start; gap:2rem; flex-wrap:wrap;
+    }
+    .foot-legal { font-size:1rem; font-weight:300; color:rgba(136,153,171,.3); line-height:1.6; max-width:700px; }
+    .foot-cr { font-size:1rem; font-weight:300; color:rgba(136,153,171,.25); letter-spacing:.06em; white-space:nowrap; }
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      nav{padding:0 1.5rem;} .nav-links{display:none;}
+      .hero{grid-template-columns:1fr; padding:5rem 1.5rem 3.5rem;}
+      .hero-right{display:none;}
+      .inner,.trust-inner,.cta-inner,.foot-main,.foot-bottom{padding-left:1.5rem;padding-right:1.5rem;}
+      .about-grid,.solutions-grid,.pif-grid,.how-grid,.cta-inner{grid-template-columns:1fr; gap:3rem;}
+      .how-sticky,.pif-sticky{position:static;}
+      .adv-grid{grid-template-columns:1fr;}
+      .foot-main{grid-template-columns:1fr 1fr;}
+      .foot-bottom{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainnav">
+  <a href="index.html" class="logo">
+    <span class="logo-mark">Charitable Gifting Fund</span>
+    <span class="logo-sub">Independent 501(c)(3) · Delaware</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L4 6l4 4"/></svg>
+    All Solutions
+  </a>
+  <ul class="nav-links">
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#youngpif">YoungPIF™</a></li>
+    <li><a href="#crt">CRT Trustee</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#advisors">For Advisors</a></li>
+  </ul>
+  <a href="institutions.html" class="nav-back" style="border-right:none;border-left:1px solid rgba(255,255,255,.08);padding-left:1.5rem;margin-left:.25rem;padding-right:0;margin-right:0;">
+    For Institutions
+    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" style="transform:rotate(180deg)"><path d="M8 2L4 6l4 4"/></svg>
+  </a>
+  <a href="#contact" class="nav-cta">Partner With Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-kicker rv">For Wealth Management · RIAs · Broker-Dealers</div>
+    <h1 class="rv d1">
+      Your clients give.<br/>
+      You keep the<br/>
+      <em>relationship.</em>
+    </h1>
+    <p class="hero-p rv d2">
+      Charitable Gifting Fund provides the 501(c)(3) sponsorship, compliance, and back-office
+      infrastructure for white-label donor-advised fund programs and pooled income funds — so
+      your firm can offer institutional-grade charitable giving under your own brand without
+      the overhead of building it.
+    </p>
+    <div class="hero-btns rv d3">
+      <a href="#contact" class="btn-primary">Request a Conversation</a>
+      <a href="#solutions" class="btn-ghost-link">See our vehicles <span class="arr">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-right rv d2">
+    <div class="hero-card">
+      <div>
+        <div class="hc-tag">Pillar One · Donor-Advised Fund</div>
+        <div class="hc-title">White-Label DAF<br/><em>for Your Brand</em></div>
+        <p class="hc-body">
+          CGF sponsors the DAF program. You provide the brand, the advisors, and the client
+          relationships. Everything else — accounting, compliance, grant distribution,
+          charity vetting — is handled by CGF.
+        </p>
+      </div>
+      <ul class="hc-features">
+        <li>Your brand on the donor portal</li>
+        <li>CGF as the 501(c)(3) umbrella</li>
+        <li>Deduction up to 60% AGI (cash) / 30% (appreciated)</li>
+        <li>Accepted: cash, securities, real estate, crypto</li>
+        <li>Orion &amp; Envestnet distribution-ready</li>
+      </ul>
+    </div>
+    <div class="hero-card">
+      <div>
+        <div class="hc-tag">Pillar Two · IRC §642(c)(5)</div>
+        <div class="hc-title">YoungPIF™<br/><em>Pooled Income Fund</em></div>
+        <p class="hc-body">
+          A differentiated planned giving vehicle built on a young fund structure — triggering
+          the favorable deemed rate under Treas. Reg. §1.642(c)-6(e)(2). Immediate deduction.
+          Income for life. No capital gains at contribution. Charitable remainder at death.
+        </p>
+      </div>
+      <ul class="hc-features">
+        <li>Immediate income tax deduction</li>
+        <li>No cap gains on appreciated property</li>
+        <li>Income flows to beneficiary for life</li>
+        <li>Young fund triggers favorable deemed rate — not historical return</li>
+        <li>CRT trustee services — CRAT &amp; CRUT · IRC §664</li>
+        <li>Sponsored and administered by CGF</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-pip"></span>Independent 501(c)(3) · Delaware</div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-pip"></span>IRC §4966 DAF Compliance</div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-pip"></span>~200K Advisors via Orion &amp; Envestnet</div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-pip"></span>No Custodial Preference</div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-pip"></span>Charitable Giving Is Our Exclusive Focus</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow rv">About CGF</div>
+        <h2 class="rv d1">Built for independence.<br/><em>Not for a custodian.</em></h2>
+        <p class="body rv d2">
+          Charitable Gifting Fund is a Delaware 501(c)(3) public charity whose exclusive mission is
+          providing charitable giving infrastructure to financial institutions. We are not a custodian,
+          a broker-dealer, or an investment manager. We hold no preference for where your clients
+          custody their assets.
+        </p>
+        <p class="body rv d3" style="margin-top:1rem;">
+          This structure is intentional. Schwab's charitable entity rebranded to DAFgiving360 in 2024
+          specifically to sever the custodial association — to serve advisors across all custodians
+          without perceived preference. CGF was built this way from day one.
+        </p>
+        <div class="independence-bar rv d4">
+          <strong>Structural note:</strong> CGF operates at arm's length from GiftingNetwork LLC,
+          the technology platform that powers administration. Separate legal entities.
+          Separate governance. No custodial affiliation.
+        </div>
+      </div>
+      <div class="rv d2">
+        <div class="about-panel">
+          <div class="stat">
+            <div class="stat-n">501<sup>(c)(3)</sup></div>
+            <div class="stat-l">Independent Public Charity</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">2</div>
+            <div class="stat-l">Charitable Vehicles</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">~200<sup>K</sup></div>
+            <div class="stat-l">Advisors in Distribution</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">DE</div>
+            <div class="stat-l">Delaware Incorporated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="solutions section-pad" id="solutions">
+  <div class="inner" style="margin-bottom:3rem;">
+    <div class="eyebrow rv" style="color:var(--gold);">Solutions</div>
+    <h2 class="on-dark rv d1">Three vehicles for<br/><em>every charitable conversation.</em></h2>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 4rem;">
+    <div class="solutions-grid" style="grid-template-columns:1fr 1fr 1fr;">
+
+      <div class="sol-card rv">
+        <span class="sol-num">I</span>
+        <div class="sol-tag">Donor-Advised Fund</div>
+        <div class="sol-title">White-Label DAF<br/>Program</div>
+        <div class="sol-sub">Your brand. CGF's 501(c)(3). Zero infrastructure build.</div>
+        <p class="sol-body">
+          CGF serves as the sponsoring 501(c)(3) for your firm's branded donor-advised fund program.
+          Your advisors open the conversations, your brand is on the portal, and your clients retain
+          the advisor relationship they trust. CGF handles everything behind the curtain —
+          IRS compliance under §4966, grant vetting, accounting, reporting, and distribution.
+        </p>
+        <ul class="sol-list">
+          <li>Branded donor-facing portal under your firm's identity</li>
+          <li>Full back-office: accounting, compliance, charity vetting, grants</li>
+          <li>Cash deduction up to 60% AGI; appreciated up to 30% at FMV</li>
+          <li>Accepted assets: cash, public securities, real estate, private equity, crypto</li>
+          <li>Advisor-directed investment options on contributed assets</li>
+          <li>Capital gains bypass on long-term appreciated securities</li>
+          <li>Orion &amp; Envestnet integration-ready for distribution</li>
+        </ul>
+        <a href="#contact" class="sol-link">Learn about DAF sponsorship →</a>
+      </div>
+
+      <div class="sol-card rv d1">
+        <span class="sol-num">II</span>
+        <div class="sol-tag">Pooled Income Fund · IRC §642(c)(5)</div>
+        <div class="sol-title">YoungPIF™<br/>Pooled Income Fund</div>
+        <div class="sol-sub">A pooled income fund built on a young fund structure — where the deemed rate, not the fund's historical return, determines the deduction.</div>
+        <p class="sol-body">
+          YoungPIF™ is a pooled income fund where the "young" refers to the fund itself — not the
+          donor or income beneficiary. Because the fund has not yet accumulated three years of tax
+          return history, the IRS applies the deemed rate under Treas. Reg. §1.642(c)-6(e)(2) rather
+          than the fund's actual return record. That deemed rate — the highest §7520 rate available
+          in the applicable 3-month window, minus one percentage point — can produce a materially
+          different deduction calculation than an older fund's historical rate. Sponsored and
+          administered by CGF. Offered through GiftingNetwork's platform under your brand.
+        </p>
+        <ul class="sol-list">
+          <li>Immediate income tax deduction in year of irrevocable transfer</li>
+          <li>No capital gains recognition on appreciated property at contribution</li>
+          <li>Income for life to designated beneficiary — character passes through under §652(b)</li>
+          <li>Charitable remainder to donor's designated charity at beneficiary death</li>
+          <li>Deemed rate: highest §7520 rate in 3-month window, minus 1 point (floor: 1%)</li>
+          <li>Tax-exempt securities prohibited per §642(c)(5)(C) — no munis</li>
+          <li>No separate charitable entity required from your firm</li>
+        </ul>
+        <a href="#youngpif" class="sol-link">Deep dive into YoungPIF™ →</a>
+      </div>
+
+      <div class="sol-card rv d2" id="crt">
+        <span class="sol-num">III</span>
+        <div class="sol-tag">Charitable Remainder Trust · IRC §664</div>
+        <div class="sol-title">CGF as Independent<br/>CRT Trustee</div>
+        <div class="sol-sub">An independent, institutional trustee — satisfying compliance requirements and eliminating advisor conflicts of interest.</div>
+        <p class="sol-body">
+          Charitable remainder trusts require a trustee. When an advisor, family member, or the
+          donor serves in that role, conflicts arise — and institutional requirements are often
+          unmet. CGF serves as independent trustee for both CRATs (fixed annuity) and CRUTs
+          (variable unitrust) under IRC §664, handling all annual calculations, distributions,
+          IRS filings, and investment oversight for the duration of the trust's life.
+        </p>
+        <ul class="sol-list">
+          <li>Independent trustee — no conflict with advisor or donor</li>
+          <li>CRAT: fixed annuity of at least 5% of initial contribution annually</li>
+          <li>CRUT: fixed percentage of trust assets revalued each year</li>
+          <li>Annual unitrust calculations, Schedule K-1 preparation, Form 5227 filings</li>
+          <li>Charitable remainder beneficiary: donor's designated qualified charity</li>
+          <li>Income interest: donor, spouse, or other named beneficiary for life or term</li>
+          <li>No capital gains recognition on appreciated property contributed to trust</li>
+        </ul>
+        <a href="#contact" class="sol-link">Inquire about CRT trustee services →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUNGPIF -->
+<section class="pif section-pad" id="youngpif">
+  <div class="inner">
+    <div class="pif-grid">
+      <div class="pif-sticky">
+        <div class="pif-badge rv">✦ IRC §642(c)(5) · CGF-Sponsored</div>
+        <div class="eyebrow rv d1">YoungPIF™</div>
+        <h2 class="rv d2">A deduction today.<br/><em>Income for decades.</em></h2>
+        <p class="body rv d3" style="margin-top:.5rem;">
+          The YoungPIF™ is a pooled income fund sponsored by CGF under IRC §642(c)(5).
+          The YoungPIF™ is a pooled income fund sponsored by CGF under IRC §642(c)(5).
+          The name refers to the <em>fund</em>, not the donor or the income beneficiary.
+          Because the YoungPIF™ has not yet accumulated three tax years of return history,
+          the IRS applies the deemed rate under Treas. Reg. §1.642(c)-6(e)(2) — the highest
+          §7520 rate in the applicable 3-month election window, minus one percentage point —
+          rather than the fund's actual historical return. This is a structurally distinct
+          calculation from an established fund, and it is the defining characteristic of
+          the YoungPIF™ offering.
+        </p>
+        <div class="pif-mechanics rv d4">
+          <div class="pif-mech">
+            <span class="mech-label">Vehicle</span>
+            <span class="mech-val">Pooled Income Fund · IRC §642(c)(5)</span>
+          </div>
+          <div class="pif-mech">
+            <span class="mech-label">Deemed Rate</span>
+            <span class="mech-val">Highest §7520 rate in 3-month election window, minus 1 point (floored at 1%)</span>
+          </div>
+          <div class="pif-mech">
+            <span class="mech-label">Income Character</span>
+            <span class="mech-val">Passes through to beneficiary under §652(b) — ordinary income &amp; capital gains character retained</span>
+          </div>
+          <div class="pif-mech">
+            <span class="mech-label">Prohibited</span>
+            <span class="mech-val">Tax-exempt securities per §642(c)(5)(C) — municipal bonds not permitted</span>
+          </div>
+          <div class="pif-mech">
+            <span class="mech-label">Beneficiary Age</span>
+            <span class="mech-val">Beneficiary age determines the actuarial split between income and remainder interests — this is separate from why the fund uses the deemed rate</span>
+          </div>
+          <div class="pif-mech">
+            <span class="mech-label">Sponsor</span>
+            <span class="mech-val">Charitable Gifting Fund (independent Delaware 501(c)(3))</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary rv d5" style="margin-top:2rem;display:inline-block;">
+          Request YoungPIF™ Details
+        </a>
+      </div>
+
+      <div class="pif-cards rv d2">
+        <div class="pif-card">
+          <div class="pif-sym">§</div>
+          <div>
+            <div class="pif-card-title">Immediate Deduction</div>
+            <p class="pif-card-body">The irrevocable transfer generates an income tax deduction in the year of contribution. The deduction equals the actuarial present value of the charitable remainder interest — calculated using the income beneficiary's age, the applicable §7520 rate, and the fund's deemed rate (applied because the fund lacks three years of return history). The beneficiary's age affects the actuarial split between income and remainder interests, but the use of the deemed rate is a function of the fund's age, not the beneficiary's.</p>
+          </div>
+        </div>
+        <div class="pif-card">
+          <div class="pif-sym">∞</div>
+          <div>
+            <div class="pif-card-title">Income for Life</div>
+            <p class="pif-card-body">The designated beneficiary receives a pro-rata share of the fund's net income for the duration of their lifetime. Income retains its character under §652(b) — ordinary income, qualified dividends, and long-term capital gains all flow through proportionally. The fund is managed for total return.</p>
+          </div>
+        </div>
+        <div class="pif-card">
+          <div class="pif-sym">0</div>
+          <div>
+            <div class="pif-card-title">No Capital Gains at Transfer</div>
+            <p class="pif-card-body">Clients contributing long-term appreciated securities bypass capital gains recognition that would otherwise occur upon sale. For equity-concentrated clients, this dramatically improves the effective economics of giving — they give more, they pay less. A materially better outcome than selling and donating cash.</p>
+          </div>
+        </div>
+        <div class="pif-card">
+          <div class="pif-sym">♦</div>
+          <div>
+            <div class="pif-card-title">Charitable Remainder</div>
+            <p class="pif-card-body">At the income beneficiary's death, remaining fund assets pass irrevocably to the donor's designated charity. The philanthropic intent is honored — often decades after the original contribution — without any action required from heirs or the estate.</p>
+          </div>
+        </div>
+        <p class="pif-disc">
+          YoungPIF™ is a pooled income fund under IRC §642(c)(5), sponsored by Charitable Gifting Fund, an independent Delaware 501(c)(3).
+          Tax outcomes depend on individual circumstances. Deemed rate uses highest §7520 rate in 3-month window minus 1 point, floored at 1%.
+          Tax-exempt securities prohibited per §642(c)(5)(C). This is not tax or legal advice. Consult a qualified advisor for client-specific analysis.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRT TRUSTEE -->
+<section class="section-pad" id="crt" style="background:var(--cream);">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:400px 1fr;gap:7rem;align-items:start;">
+
+      <div style="position:sticky;top:88px;">
+        <div class="eyebrow rv">CRT Trustee · IRC §664</div>
+        <h2 class="rv d1">An independent trustee<br/>for charitable<br/><em>remainder trusts.</em></h2>
+        <p class="body rv d2" style="margin-top:.5rem;">
+          Charitable remainder trusts require a trustee — and the trustee role creates conflicts
+          when filled by an advisor, donor, or family member. CGF serves as the independent,
+          institutional trustee of record for CRATs and CRUTs, satisfying compliance requirements
+          and removing the conflict of interest that increasingly disqualifies advisors from serving.
+        </p>
+        <p class="body rv d3" style="margin-top:1rem;">
+          The donor receives an immediate charitable deduction, avoids capital gains on appreciated
+          property at contribution, and draws a fixed or variable income stream for life or a term
+          of years. The charitable remainder — designated by the donor to any qualified charity —
+          transfers when the income interest ends. CGF handles everything in between.
+        </p>
+
+        <div style="margin-top:2rem;display:flex;flex-direction:column;gap:0;" class="rv d4">
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--stone);align-items:baseline;">
+            <span style="font-size:.82rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);">Vehicle</span>
+            <span style="font-size:1rem;font-weight:300;color:#5d7080;line-height:1.55;">Charitable Remainder Trust — CRAT or CRUT — IRC §664</span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--stone);align-items:baseline;">
+            <span style="font-size:.82rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);">CRAT</span>
+            <span style="font-size:1rem;font-weight:300;color:#5d7080;line-height:1.55;">Fixed annuity of at least 5% of initial FMV paid annually — predictable, no revaluation</span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--stone);align-items:baseline;">
+            <span style="font-size:.82rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);">CRUT</span>
+            <span style="font-size:1rem;font-weight:300;color:#5d7080;line-height:1.55;">Fixed percentage of annually revalued trust assets — participates in portfolio growth</span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--stone);align-items:baseline;">
+            <span style="font-size:.82rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);">Deduction</span>
+            <span style="font-size:1rem;font-weight:300;color:#5d7080;line-height:1.55;">Present value of the charitable remainder interest — calculated using the §7520 rate at funding</span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--stone);align-items:baseline;">
+            <span style="font-size:.82rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);">Capital Gains</span>
+            <span style="font-size:1rem;font-weight:300;color:#5d7080;line-height:1.55;">No recognition at contribution — gains flow through only as the trust distributes income</span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:.8rem 0;align-items:baseline;">
+            <span style="font-size:.82rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);">CGF Files</span>
+            <span style="font-size:1rem;font-weight:300;color:#5d7080;line-height:1.55;">Form 5227 annually, Schedule K-1 to income beneficiaries, state charitable registration</span>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary rv d5" style="margin-top:2rem;display:inline-block;">
+          Inquire About CRT Trustee
+        </a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;" class="rv d2">
+        <div class="pif-card" style="background:var(--white);">
+          <div class="pif-sym">⚖</div>
+          <div>
+            <div class="pif-card-title">Why an Independent Trustee Matters</div>
+            <p class="pif-card-body">When an advisor serves as CRT trustee, they face a conflict: the trust's investment decisions directly affect their own compensation and their client's income. Regulatory scrutiny of this arrangement has increased substantially. CGF as trustee resolves the conflict cleanly — your advisors continue to manage the investment relationship; CGF holds the fiduciary role.</p>
+          </div>
+        </div>
+        <div class="pif-card" style="background:var(--white);">
+          <div class="pif-sym">§</div>
+          <div>
+            <div class="pif-card-title">Full Trust Administration</div>
+            <p class="pif-card-body">CGF handles every administrative obligation for the duration of the trust: annual CRAT or CRUT payment calculations, investment oversight in accordance with the trust document, Form 5227 preparation and filing, Schedule K-1 issuance to income beneficiaries, and any required state charitable solicitation registrations. Nothing falls on your firm or the client.</p>
+          </div>
+        </div>
+        <div class="pif-card" style="background:var(--white);">
+          <div class="pif-sym">0</div>
+          <div>
+            <div class="pif-card-title">No Capital Gains at Contribution</div>
+            <p class="pif-card-body">Clients contributing long-term appreciated securities to a CRT avoid capital gains recognition at the point of transfer. The trust can sell and diversify without triggering the embedded gain — a powerful planning opportunity for concentrated equity positions, where the economics of a CRT often substantially outperform a direct sale and donation.</p>
+          </div>
+        </div>
+        <div class="pif-card" style="background:var(--white);">
+          <div class="pif-sym">♦</div>
+          <div>
+            <div class="pif-card-title">Remainder to the Client's Chosen Charity</div>
+            <p class="pif-card-body">The charitable remainder beneficiary is designated by the donor at trust formation — any qualified 501(c)(3) the client chooses. CGF administers the trust; the client controls the philanthropic destination. At the income interest's end, CGF distributes remaining trust assets to the designated charity and the trust terminates.</p>
+          </div>
+        </div>
+        <p class="pif-disc" style="background:var(--white);border:1px solid var(--stone);padding:1rem 1.25rem;margin-top:0;">
+          CGF serves as independent trustee for CRATs and CRUTs under IRC §664. CRT administration involves tax considerations specific to individual circumstances. Neither CGF nor this site provides tax or legal advice. Advisors should consult a qualified tax counsel regarding trust structure, payout rates, and deduction calculations for each client situation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how section-pad" id="how">
+  <div class="inner">
+    <div class="how-grid">
+      <div class="how-sticky">
+        <div class="eyebrow rv">Partnership Model</div>
+        <h2 class="rv d1">How a CGF<br/><em>partnership works.</em></h2>
+        <p class="body rv d2">
+          From signed agreement to a client's first contribution, the model is designed to be
+          operationally seamless for your advisors — and invisible to your clients as anything
+          other than your firm's own philanthropic program.
+        </p>
+      </div>
+      <div class="steps">
+        <div class="step rv">
+          <span class="step-n">01.</span>
+          <div>
+            <div class="step-title">Partnership Agreement</div>
+            <p class="step-body">Your firm signs a partnership agreement with CGF. We align on branding parameters, fee structure, investment options for DAF assets, and integration touchpoints — including direct connections via Orion or Envestnet where applicable.</p>
+          </div>
+        </div>
+        <div class="step rv d1">
+          <span class="step-n">02.</span>
+          <div>
+            <div class="step-title">Branded Configuration</div>
+            <p class="step-body">GiftingNetwork's platform is configured to your brand identity — logo, colors, advisor workflows, and client-facing portal. The experience is indistinguishable from an in-house program. CGF's name appears where required by IRS acknowledgment protocols, nowhere else without your permission.</p>
+          </div>
+        </div>
+        <div class="step rv d2">
+          <span class="step-n">03.</span>
+          <div>
+            <div class="step-title">Advisor Enablement</div>
+            <p class="step-body">Your advisors gain access to planned giving intake tools and educational resources — including AI-powered conversation starters — so they can open charitable discussions with confidence. No specialized training required to begin.</p>
+          </div>
+        </div>
+        <div class="step rv d3">
+          <span class="step-n">04.</span>
+          <div>
+            <div class="step-title">Client Onboarding</div>
+            <p class="step-body">Clients contribute assets through a streamlined digital flow. CGF handles the 501(c)(3) acknowledgment letter, IRS-required documentation, asset acceptance review, and back-office processing — including actuarial computations for YoungPIF™ contributions.</p>
+          </div>
+        </div>
+        <div class="step rv d4">
+          <span class="step-n">05.</span>
+          <div>
+            <div class="step-title">Ongoing Administration</div>
+            <p class="step-body">CGF handles all continuing obligations: grant distribution, charity vetting, investment reporting, compliance monitoring, and annual tax documentation. Your advisors remain the client's primary point of contact. The philanthropic relationship stays where it belongs — with your firm.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR ADVISORS -->
+<section class="advisors section-pad" id="advisors">
+  <div class="inner" style="margin-bottom:3rem;">
+    <div class="eyebrow rv" style="color:var(--gold);">For Advisors</div>
+    <h2 class="on-dark rv d1">The tools to have<br/><em>every charitable conversation.</em></h2>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 4rem;">
+    <div class="adv-grid">
+      <div class="adv-card rv">
+        <svg class="adv-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="18" cy="18" r="13"/>
+          <path d="M18 12v6l4 2.5"/>
+        </svg>
+        <div class="adv-title">AI-Powered Intake Tools</div>
+        <p class="adv-body">Planned giving conversations start with a question, not a form. Our Fred™ AI assistant guides clients through charitable planning scenarios and surfaces the right vehicle — DAF or YoungPIF™ — based on their situation.</p>
+      </div>
+      <div class="adv-card rv d1">
+        <svg class="adv-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="4" y="6" width="28" height="20" rx="2"/>
+          <path d="M12 26v4M24 26v4M8 30h20"/>
+          <path d="M10 14h16M10 19h10"/>
+        </svg>
+        <div class="adv-title">Calculators &amp; Illustrations</div>
+        <p class="adv-body">Interactive deduction calculators for DAF contributions and YoungPIF™ actuarial estimates — built for the advisor conversation, not the back office. Show clients the tax math in the meeting.</p>
+      </div>
+      <div class="adv-card rv d2">
+        <svg class="adv-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M8 28s3-9 10-9 10 9 10 9"/>
+          <circle cx="18" cy="13" r="6"/>
+          <path d="M26 10l3 3-3 3"/>
+        </svg>
+        <div class="adv-title">Distribution via Orion &amp; Envestnet</div>
+        <p class="adv-body">CGF's programs are distribution-ready through Orion and Envestnet, providing access to approximately 200,000 financial advisors. If your firm already works on either platform, integration is accelerated from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEPENDENCE -->
+<section class="independence" id="independence">
+  <div class="ind-inner">
+    <p class="ind-pull rv">"Charitable giving is not a feature we added.<br/>It is the only thing we do."</p>
+    <div class="ind-rule rv d1"></div>
+    <p class="ind-body rv d2">
+      Charitable Gifting Fund was built as a standalone 501(c)(3) with a single purpose. We are not
+      a custodian trying to capture assets. We are not a mutual fund company using a DAF as a
+      retention tool. We hold no preference for where your clients custody, what platform they
+      use, or how their advisor fees are structured. Our structure exists to serve the philanthropic
+      intent — and only that.
+    </p>
+    <div class="ind-badges rv d3">
+      <span class="ibadge"><span class="ibadge-dot"></span> Exclusive Charitable Focus</span>
+      <span class="ibadge"><span class="ibadge-dot"></span> Delaware 501(c)(3)</span>
+      <span class="ibadge"><span class="ibadge-dot"></span> No Custodial Preference</span>
+      <span class="ibadge"><span class="ibadge-dot"></span> IRC §4966 Compliant</span>
+      <span class="ibadge"><span class="ibadge-dot"></span> CPAs · JDs · CFPs</span>
+    </div>
+    <a href="#contact" class="btn-primary rv d4">Partner With CGF</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title rv">Ready to offer your clients<br/>a philanthropic home?</h2>
+      <p class="cta-sub rv d1">
+        Schedule a conversation with the CGF team. We will walk through the partnership structure,
+        integration with your existing platform, and how DAF and YoungPIF™ fit your client base.
+      </p>
+    </div>
+    <div class="cta-actions rv d2">
+      <a href="/cdn-cgi/l/email-protection#701f00033013181102190411121c1517191604191e1716051e145e1f02174f0305121a1513044d2715111c0418503d111e1117151d151e0450201102041e15020318190050391e0105190209" class="btn-dark">
+        Request a Conversation
+      </a>
+      <p class="cta-phone">Or call <a href="tel:+19739848200">973-984-8200</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-main">
+    <div>
+      <div class="foot-name">Charitable Gifting Fund</div>
+      <div class="foot-tag">Wealth Management · Philanthropic Infrastructure</div>
+      <p class="foot-copy">
+        Charitable Gifting Fund is an independent Delaware 501(c)(3) public charity.
+        Administrative and technology services provided by GiftingNetwork LLC pursuant to a
+        service agreement. CGF and GiftingNetwork LLC are separate legal entities operating
+        at arm's length.
+      </p>
+    </div>
+    <div class="foot-col">
+      <h6>Solutions</h6>
+      <ul>
+        <li><a href="#solutions">White-Label DAF Program</a></li>
+        <li><a href="#youngpif">YoungPIF™ Pooled Income Fund</a></li>
+        <li><a href="#crt">CRT Trustee Services</a></li>
+        <li><a href="#how">Partnership Model</a></li>
+        <li><a href="#advisors">For Advisors</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Distribution</h6>
+      <ul>
+        <li><a href="#advisors">Orion Integration</a></li>
+        <li><a href="#advisors">Envestnet Integration</a></li>
+        <li><a href="#about">About Independence</a></li>
+      </ul>
+    </div>
+    <div class="foot-col foot-contact">
+      <h6>Contact</h6>
+      <p>
+        <a href="/cdn-cgi/l/email-protection#d5baa5a695b6bdb4a7bca1b4b7b9b0b2bcb3a1bcbbb2b3a0bbb1fbbaa7b2"><span class="__cf_email__" data-cfemail="204f50536043484152495441424c4547494654494e4746554e440e4f5247">[email&#160;protected]</span></a><br/>
+        <a href="tel:+19739848200">973-984-8200</a><br/><br/>
+        89 Headquarters Plaza, Suite 1446<br/>Morristown, NJ 07960
+      </p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="foot-legal">
+      Charitable Gifting Fund is an independent 501(c)(3) public charity incorporated in Delaware. EIN available upon request.
+      YoungPIF™ is a pooled income fund under IRC §642(c)(5). CGF serves as independent trustee for charitable remainder trusts
+      (CRATs and CRUTs) under IRC §664. Nothing on this site constitutes tax or legal advice.
+      All charitable vehicles involve tax considerations specific to individual circumstances. Consult a qualified advisor.
+    </p>
+    <p class="foot-cr">© 2025 Charitable Gifting Fund</p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainnav');
+  if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+</script>
+</body>
+</html>
