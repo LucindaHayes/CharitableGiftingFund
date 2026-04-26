@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Neue+Haas+Grotesk+Display+Pro:wght@400;500&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <script src="https://js.hsforms.net/forms/embed/21379602.js" defer></script>
   <style>
     :root {
       --ink:       #162535;
@@ -432,27 +433,51 @@
     .ibadge-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); }
 
     /* ── CTA ── */
-    .cta { background:var(--gold-pale); border-top:1px solid rgba(184,149,78,.2); }
+    .cta { background:var(--gold-pale); border-top:1px solid rgba(184,149,78,.2); padding:5rem 0; }
     .cta-inner {
-      max-width:1200px; margin:0 auto; padding:4.5rem 4rem;
-      display:grid; grid-template-columns:1fr auto; gap:4rem; align-items:center;
+      max-width:1200px; margin:0 auto; padding:0 4rem;
+      display:grid; grid-template-columns:1fr 1.05fr; gap:4.5rem; align-items:start;
     }
+    .cta-text { padding-top:.5rem; }
     .cta-title {
       font-family:'Libre Baskerville', serif;
       font-size:clamp(2rem,2.8vw,2.9rem); font-weight:400; color:var(--ink);
-      line-height:1.2; margin-bottom:.65rem;
+      line-height:1.2; margin-bottom:.85rem;
     }
-    .cta-sub { font-size:1.07rem; font-weight:300; color:#5d7080; }
-    .cta-actions { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; }
-    .btn-dark {
-      display:inline-block; background:var(--ink); color:var(--white);
-      font-size:1.07rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase;
-      text-decoration:none; padding:.88rem 1.85rem; border-radius:2px; white-space:nowrap;
-      transition:background .2s;
+    .cta-sub { font-size:1.07rem; font-weight:300; color:#5d7080; line-height:1.8; margin-bottom:1.75rem; }
+    .cta-contact-alt { font-size:.95rem; font-weight:300; color:var(--fog); line-height:1.9; }
+    .cta-contact-alt a { color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(13,95,160,.25); transition:color .2s, border-color .2s; }
+    .cta-contact-alt a:hover { color:var(--ink); border-bottom-color:var(--ink); }
+
+    /* Form wrap — light theme for gold-pale CTA */
+    .hs-form-wrap { background:var(--white); border:1px solid var(--stone); border-radius:4px; padding:2.5rem 2.25rem; box-shadow:0 12px 40px rgba(22,37,53,.07); }
+    .cgf-form { display:flex; flex-direction:column; gap:.85rem; }
+    .cgf-form-title { font-family:'Libre Baskerville', serif; font-size:1.3rem; font-weight:400; color:var(--ink); margin-bottom:.5rem; }
+    .cgf-form-row { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
+    .cgf-form-group { display:flex; flex-direction:column; }
+    .cgf-form label { font-size:.875rem; font-weight:400; color:var(--ink); margin-bottom:.3rem; letter-spacing:.02em; }
+    .cgf-form input[type="text"],
+    .cgf-form input[type="email"],
+    .cgf-form input[type="tel"],
+    .cgf-form select {
+      width:100%; background:#ffffff; border:1px solid var(--stone);
+      border-radius:2px; padding:.78rem 1rem; font-family:inherit;
+      font-size:.95rem; font-weight:300; color:var(--ink);
+      transition:border-color .15s, box-shadow .15s; -webkit-appearance:none; appearance:none;
     }
-    .btn-dark:hover { background:var(--ink-lift); }
-    .cta-phone { font-size:.92rem; font-weight:300; color:#6b7e90; }
-    .cta-phone a { color:var(--ink); text-decoration:none; border-bottom:1px solid rgba(12,28,42,.18); }
+    .cgf-form select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a8499' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; }
+    .cgf-form input::placeholder { color:#9fb0bf; }
+    .cgf-form input:focus,
+    .cgf-form select:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(13,95,160,.12); }
+    .cgf-form .opt-label { font-size:.78rem; color:var(--fog); margin-left:.3rem; font-style:italic; }
+    .cgf-form-btn { background:var(--ink); color:var(--white); border:none; width:100%; padding:.95rem 1rem; border-radius:2px; font-family:inherit; font-size:.9rem; font-weight:400; letter-spacing:.16em; text-transform:uppercase; cursor:pointer; transition:background .2s, transform .15s; margin-top:.4rem; }
+    .cgf-form-btn:hover { background:var(--ink-lift); transform:translateY(-1px); }
+    .cgf-form-note { font-size:.82rem; font-weight:300; color:var(--fog); text-align:center; margin-top:.2rem; }
+    .cgf-form-thanks { display:none; text-align:center; padding:2.5rem 1rem; }
+    .cgf-form-thanks.show { display:block; }
+    .cgf-form-thanks-icon { font-size:2.2rem; margin-bottom:.75rem; color:var(--gold); }
+    .cgf-form-thanks h3 { font-family:'Libre Baskerville', serif; font-size:1.5rem; font-weight:400; color:var(--ink); margin-bottom:.5rem; }
+    .cgf-form-thanks p { font-size:.95rem; font-weight:300; color:var(--fog); }
 
     /* ── FOOTER ── */
     footer { background:var(--ink); border-top:1px solid var(--rule-dark); }
@@ -1040,18 +1065,65 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="cta-inner">
-    <div>
+    <div class="cta-text">
       <h2 class="cta-title rv">Ready to offer your clients<br/>a philanthropic home?</h2>
       <p class="cta-sub rv d1">
         Schedule a conversation with the CGF team. We will walk through the partnership structure,
         integration with your existing platform, and how DAF and YoungPIF™ fit your client base.
       </p>
+      <p class="cta-contact-alt rv d2">
+        Prefer to call?<br/>
+        <a href="tel:+19739848200">973-984-8200</a>
+      </p>
     </div>
-    <div class="cta-actions rv d2">
-      <a href="mailto:ops@charitablegiftingfund.org?subject=Wealth%20Management%20Partnership%20Inquiry" class="btn-dark">
-        Request a Conversation
-      </a>
-      <p class="cta-phone">Or call <a href="tel:+19739848200">973-984-8200</a></p>
+    <div class="hs-form-wrap rv d2">
+      <form class="cgf-form" id="cgf-wm-form" novalidate>
+        <div class="cgf-form-title">Request a Conversation</div>
+        <div class="cgf-form-row">
+          <div class="cgf-form-group">
+            <label for="wm-first">First Name</label>
+            <input type="text" id="wm-first" name="firstname" required placeholder="First"/>
+          </div>
+          <div class="cgf-form-group">
+            <label for="wm-last">Last Name</label>
+            <input type="text" id="wm-last" name="lastname" required placeholder="Last"/>
+          </div>
+        </div>
+        <div class="cgf-form-group">
+          <label for="wm-firm">Firm</label>
+          <input type="text" id="wm-firm" name="company" required placeholder="Your wealth management firm"/>
+        </div>
+        <div class="cgf-form-group">
+          <label for="wm-title">Title / Role</label>
+          <input type="text" id="wm-title" name="jobtitle" placeholder="e.g. Managing Director, Head of Planning"/>
+        </div>
+        <div class="cgf-form-group">
+          <label for="wm-email">Email Address</label>
+          <input type="email" id="wm-email" name="email" required placeholder="you@yourfirm.com"/>
+        </div>
+        <div class="cgf-form-group">
+          <label for="wm-phone">Phone <span class="opt-label">(optional)</span></label>
+          <input type="tel" id="wm-phone" name="phone" placeholder="(000) 000-0000"/>
+        </div>
+        <div class="cgf-form-group">
+          <label for="wm-interest">Primary Interest</label>
+          <select id="wm-interest" name="cgf_wm_interest" required>
+            <option value="">Select one&hellip;</option>
+            <option>White-Label DAF Program</option>
+            <option>YoungPIF&trade; Pooled Income Fund</option>
+            <option>CRT Trustee Services</option>
+            <option>Multiple / Full Partnership</option>
+            <option>Still Evaluating</option>
+          </select>
+        </div>
+        <button type="submit" class="cgf-form-btn">Request a Conversation</button>
+        <p class="cgf-form-note">We respond within one business day.</p>
+      </form>
+      <div class="cgf-form-thanks" id="cgf-wm-thanks">
+        <div class="cgf-form-thanks-icon">✓</div>
+        <h3>Thank you.</h3>
+        <p>We&rsquo;ll be in touch within one business day.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1089,7 +1161,6 @@
     <div class="foot-col foot-contact">
       <h6>Contact</h6>
       <p>
-        <a href="mailto:ops@charitablegiftingfund.org">ops@charitablegiftingfund.org</a><br/>
         <a href="tel:+19739848200">973-984-8200</a><br/><br/>
         89 Headquarters Plaza, Suite 1446<br/>Morristown, NJ 07960
       </p>
@@ -1109,6 +1180,34 @@
 <script>
   const nav = document.getElementById('mainnav');
   if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+  /* CGF wealth-management form → HubSpot Forms API */
+  (function() {
+    var form = document.getElementById('cgf-wm-form');
+    var thanks = document.getElementById('cgf-wm-thanks');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var fields = [
+        { name: 'firstname',        value: document.getElementById('wm-first').value.trim() },
+        { name: 'lastname',         value: document.getElementById('wm-last').value.trim() },
+        { name: 'company',          value: document.getElementById('wm-firm').value.trim() },
+        { name: 'jobtitle',         value: document.getElementById('wm-title').value.trim() },
+        { name: 'email',            value: document.getElementById('wm-email').value.trim() },
+        { name: 'phone',            value: document.getElementById('wm-phone').value.trim() },
+        { name: 'cgf_wm_interest',  value: document.getElementById('wm-interest').value },
+        { name: 'cgf_program',      value: 'CGF — Wealth Management' }
+      ].filter(function(f){ return f.value; });
+      fetch('https://api.hsforms.com/submissions/v3/integration/submit/21379602/319306ef-ba5e-4304-a289-26d1c2671078', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fields: fields, context: { pageUri: window.location.href, pageName: document.title } })
+      }).then(function(r) {
+        if (r.ok) { form.style.display = 'none'; thanks.classList.add('show'); }
+        else { alert('Something went wrong — please try again or call 973-984-8200.'); }
+      }).catch(function() { alert('Something went wrong — please try again or call 973-984-8200.'); });
+    });
+  })();
 </script>
 </body>
 </html>
