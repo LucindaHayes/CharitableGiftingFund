@@ -216,19 +216,16 @@
     .aud-inst .aud-list li::before { content: '–'; color: var(--sage);  flex-shrink: 0; }
 
     .aud-link {
-      display: inline-flex; align-items: center; gap: .65rem;
-      font-size: .875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-      text-decoration: none; padding: .9rem 1.75rem; border-radius: 2px;
-      background: var(--blue); color: var(--white);
-      box-shadow: 0 2px 8px rgba(13,95,160,.18);
-      transition: background .2s, transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .875rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase;
+      text-decoration: none; transition: gap .2s, opacity .2s;
     }
-    .aud-wm  .aud-link,
-    .aud-crt .aud-link,
-    .aud-inst .aud-link { color: var(--white); background: var(--blue); }
+    .aud-wm  .aud-link { color: var(--forest); }
+    .aud-crt .aud-link { color: var(--fog); }
+    .aud-inst .aud-link { color: var(--sage); }
     .aud-link .arr { transition: transform .22s; }
-    .aud-link:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(13,95,160,.28); }
     .aud-link:hover .arr { transform: translateX(6px); }
+    .aud-link:hover { opacity: .75; }
 
     .aud-img { border-radius: 3px; overflow: hidden; box-shadow: 0 6px 32px rgba(7,58,98,.1); }
     .aud-img img { width: 100%; height: 270px; object-fit: cover; object-position: center; display: block; transition: transform .6s cubic-bezier(.22,1,.36,1); }
@@ -375,7 +372,8 @@
 <div class="nav-topbar">
   <div class="nav-topbar-inner">
     <div class="nav-topbar-contacts">
-      <a href="tel:+19739848200">973-984-8200</a>
+      <a href="mailto:pamela@charitablegiftingfund.org">pamela@charitablegiftingfund.org</a>
+      <a href="tel:+19088681151">908-868-1151</a>
     </div>
   </div>
 </div>
@@ -545,8 +543,9 @@
       <h2 class="cta-title rv">Ready to build a philanthropic<br/><em>program without the infrastructure?</em></h2>
       <p class="cta-sub rv d1">Whether you represent a wealth management firm, an advisory practice, or a nonprofit institution, we start every partnership with a conversation.</p>
       <p class="cta-contact-alt rv d2">
-        Prefer to call?<br/>
-        <a href="tel:+19739848200">973-984-8200</a>
+        Prefer to reach us directly?<br/>
+        <a href="mailto:pamela@charitablegiftingfund.org">pamela@charitablegiftingfund.org</a> &nbsp;&middot;&nbsp;
+        <a href="tel:+19088681151">908-868-1151</a>
       </p>
     </div>
     <div class="hs-form-wrap rv d2">
@@ -623,7 +622,7 @@
     </div>
     <div class="foot-col foot-contact">
       <h6>Contact</h6>
-      <p><a href="tel:+19739848200">973-984-8200</a></p>
+      <p><a href="mailto:pamela@charitablegiftingfund.org">pamela@charitablegiftingfund.org</a><br/><a href="tel:+19088681151">908-868-1151</a></p>
     </div>
   </div>
   <div class="foot-bottom">
@@ -679,8 +678,8 @@
         body: JSON.stringify({ fields: fields, context: { pageUri: window.location.href, pageName: document.title } })
       }).then(function(r) {
         if (r.ok) { form.style.display = 'none'; thanks.classList.add('show'); }
-        else { alert('Something went wrong — please try again or call 973-984-8200.'); }
-      }).catch(function() { alert('Something went wrong — please try again or call 973-984-8200.'); });
+        else { alert('Something went wrong — please email pamela@charitablegiftingfund.org'); }
+      }).catch(function() { alert('Something went wrong — please email pamela@charitablegiftingfund.org'); });
     });
   })();
 </script>
